@@ -1,13 +1,16 @@
 import json
 import os
+from dotenv import load_dotenv
 from googleapiclient.discovery import build
+from settings import API_KEY
 
 
 class Channel:
     """Класс для ютуб-канала"""
 
     # YOUTUBE_API_KEY скопирован из гугла и вставлен в переменные окружения
-    api_key: str = os.getenv('YOUTUBE_API_KEY')
+    load_dotenv(API_KEY)
+    api_key = os.getenv('YOUTUBE_API_KEY')
 
     def __init__(self, channel_id: str) -> None:
         """
@@ -41,7 +44,7 @@ class Channel:
         """
         Выводит в консоль информацию о канале.
         """
-        print(json.dumps(self.ch_request, indent=4, ensure_ascii=False))
+        print(json.dumps(self.ch_request, indent=2, ensure_ascii=False))
 
     @property
     # создаёт геттер для обращения к приватному экземпляру
