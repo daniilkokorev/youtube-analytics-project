@@ -82,13 +82,10 @@ class Channel:
         """
         выполняет вычитание подписчиков двух каналов
         """
-        return f"{int(self.subscriberCount) - int(other.subscriberCount)}"
-
-    def __sub__(self, other):
-        """
-        выполняет вычитание подписчиков двух каналов
-        """
-        return f"{int(other.subscriberCount) - int(self.subscriberCount)}"
+        if int(self.subscriberCount) - int(other.subscriberCount):
+            return f"{int(self.subscriberCount) - int(other.subscriberCount)}"
+        else:
+            return f"{int(other.subscriberCount) - int(self.subscriberCount)}"
 
     def __gt__(self, other):
         """
