@@ -76,43 +76,40 @@ class Channel:
         """
         выполняет сложение подписчиков двух каналов
         """
-        return f"{int(self.subscriberCount) + int(other.subscriberCount)}"
+        return int(self.subscriberCount) + int(other.subscriberCount)
 
     def __sub__(self, other):
         """
         выполняет вычитание подписчиков двух каналов
         """
-        if int(self.subscriberCount) - int(other.subscriberCount):
-            return f"{int(self.subscriberCount) - int(other.subscriberCount)}"
-        else:
-            return f"{int(other.subscriberCount) - int(self.subscriberCount)}"
+        return int(self.subscriberCount) - int(other.subscriberCount)
 
     def __gt__(self, other):
         """
         сравнивает количество подписчиков двух каналов
         """
-        return f"{int(self.subscriberCount) > int(other.subscriberCount)}"
+        return int(self.subscriberCount) > int(other.subscriberCount)
 
     def __ge__(self, other):
         """
         сравнивает количество подписчиков двух каналов
         """
-        return f"{int(self.subscriberCount) >= int(other.subscriberCount)}"
+        return int(self.subscriberCount) >= int(other.subscriberCount)
 
     def __lt__(self, other):
         """
         сравнивает количество подписчиков двух каналов
         """
-        return f"{int(self.subscriberCount) < int(other.subscriberCount)}"
+        return int(self.subscriberCount) < int(other.subscriberCount)
 
     def __le__(self, other):
         """
         сравнивает количество подписчиков двух каналов
         """
-        return f"{int(self.subscriberCount) <= int(other.subscriberCount)}"
+        return int(self.subscriberCount) <= int(other.subscriberCount)
 
     def __eq__(self, other):
         """
         сравнивает количество подписчиков двух каналов
         """
-        return f"{int(self.subscriberCount) == int(other.subscriberCount)}"
+        return int(self.subscriberCount) == int(other.subscriberCount)
