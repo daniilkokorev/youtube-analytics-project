@@ -16,20 +16,24 @@ class Video:
         """
         инициализирует id видео с ютуба.
         """
-        self.video_id = video_id
-        self.video_get = self.get_service().videos().list(id=self.video_id,
-                        part='snippet,statistics,contentDetails,topicDetails').execute()
-        # название видео
-        self.video_name = self.video_get["items"][0]["snippet"]["title"]
-        # ссылка на канал
-        self.url = f"https://www.youtube.com/channel/{self.video_id}"
-        # количество просмотров
-        self.video_views = self.video_get["items"][0]["statistics"]["viewCount"]
-        # количество лайков
-        self.video_like = self.video_get["items"][0]["statistics"]["likeCount"]
+        try:
+            self.video_id = video_id
+            self.video_get = self.get_service().videos().list(id=self.video_id,
+                            part='snippet,statistics,contentDetails,topicDetails').execute()
+            # название видео
+            self.title = self.video_get["items"][0]["snippet"]["title"]
+            # ссылка на канал
+            self.url = f"https://www.youtube.com/channel/{self.video_id}"
+            # количество просмотров
+            self.video_views = self.video_get["items"][0]["statistics"]["viewCount"]
+            # количество лайков
+            self.like_count = self.video_get["items"][0]["statistics"]["likeCount"]
+        except:
+            self.title = None
+            self.like_count = None
 
     def __str__(self):
-        return self.video_name
+        return self.title
 
     @classmethod
     def get_service(cls):
@@ -49,4 +53,4 @@ class PLVideo(Video):
                                                        maxResults=50,).execute()
 
     def __str__(self):
-        return self.video_name
+        return self.title
