@@ -10,7 +10,7 @@ from settings import API_KEY
 
 class PlayList:
     """
-    класс содержит плайлист видео с ютуба
+    класс содержит плейлист видео с ютуба
     """
     # YOUTUBE_API_KEY скопирован из гугла и вставлен в переменные окружения
     load_dotenv(API_KEY)
@@ -18,11 +18,14 @@ class PlayList:
 
     def __init__(self, playlist_id):
         self.playlist_id = playlist_id
+        # получает название плейлиста
+        self.playlist_title = self.get_service().playlists().list(id=playlist_id,
+                                               part='snippet').execute()
+        # получает информацию плейлиста
         self.playlist_data = self.get_service().playlistItems().list(playlistId=playlist_id,
-                                               part='contentDetails,snippet',
-                                                maxResults=50,).execute()
-        # название плайлиста
-        self.title = self.playlist_data["items"][0]["snippet"]["title"][0:24]
+                                               part='contentDetails,snippet').execute()
+        # название плейлиста
+        self.title = self.playlist_title["items"][0]["snippet"]["title"]
         # ссылка на видео
         self.url = f"https://www.youtube.com/playlist?list={self.playlist_id}"
         # id всех видео в плейлисте
